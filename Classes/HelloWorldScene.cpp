@@ -2,6 +2,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "PulsingHaloLayer.hpp"
+#include "CircleLayer.hpp"
 
 USING_NS_CC;
 
@@ -37,8 +38,13 @@ bool HelloWorld::init()
     addChild(rootNode);
     
     PulsingHaloEffect* halo = PulsingHaloEffect::create();
+    halo->setPosition(rootNode->getContentSize() * 0.5);
     addChild(halo);
     halo->start();
+    
+    CircleLayer *circleLayer = CircleLayer::create();
+    circleLayer->setPosition(rootNode->getContentSize() * 0.5);
+    addChild(circleLayer);
 
     return true;
 }

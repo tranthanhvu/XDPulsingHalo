@@ -34,7 +34,7 @@ public:
     PulsingHaloEffect();
     ~PulsingHaloEffect();
     
-    static PulsingHaloEffect* create(const cocos2d::Color4B &color = Color4B(0, 122, 255, 122), float repeatCount = 0);
+    static PulsingHaloEffect* create(const cocos2d::Color4B &color = Color4B(0, 122, 255, 255), float repeatCount = 0);
     
     bool initWithColor(const cocos2d::Color4B &color, float repeatCount);
     void start();
