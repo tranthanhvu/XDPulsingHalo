@@ -3,6 +3,7 @@
 #include "ui/CocosGUI.h"
 #include "PulsingHaloLayer.hpp"
 #include "CircleLayer.hpp"
+#include "PulsingHaloController.hpp"
 
 USING_NS_CC;
 
@@ -42,9 +43,13 @@ bool HelloWorld::init()
     addChild(halo);
     halo->start();
     
-    CircleLayer *circleLayer = CircleLayer::create();
-    circleLayer->setPosition(rootNode->getContentSize() * 0.5);
+    CircleLayer *circleLayer = CircleLayer::create(Color4B::BLUE, 300);
+    circleLayer->setPosition(rootNode->getContentSize() * 0.2);
     addChild(circleLayer);
+    
+    PulsingHaloController* com = PulsingHaloController::create();
+    circleLayer->addComponent(com);
+    com->start();
 
     return true;
 }
