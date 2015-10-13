@@ -10,8 +10,8 @@
 
 #define kPulsingHaloLayerActionTag 2000
 
-PulsingHaloEffect* PulsingHaloEffect::create(const cocos2d::Color4B &color, float radius, int repeatCount) {
-    PulsingHaloEffect *pRet = new(std::nothrow) PulsingHaloEffect();
+PulsingHaloLayer* PulsingHaloLayer::create(const cocos2d::Color4B &color, float radius, int repeatCount) {
+    PulsingHaloLayer *pRet = new(std::nothrow) PulsingHaloLayer();
 
     if (pRet && pRet->initWithColor(color, radius, repeatCount))
     {
@@ -24,24 +24,26 @@ PulsingHaloEffect* PulsingHaloEffect::create(const cocos2d::Color4B &color, floa
     }
 }
 
-PulsingHaloEffect::PulsingHaloEffect() {
+PulsingHaloLayer::PulsingHaloLayer() {
     
 }
 
-PulsingHaloEffect::~PulsingHaloEffect() {
+PulsingHaloLayer::~PulsingHaloLayer() {
     
 }
 
-bool PulsingHaloEffect::initWithColor(const cocos2d::Color4B &color, float radius, int repeatCount) {
+bool PulsingHaloLayer::initWithColor(const cocos2d::Color4B &color, float radius, int repeatCount) {
     if (CircleLayer::initWithColor(color, radius)) {
+        setName("PulsingHaloLayer");
+        
         _fromValueForRadius = 0.0;
         _fromValueForAlpha = 0.45;
         _keyTimeForHalfOpacity = 0.7f;
         _animationDuration = 3.f;
+        _delayInterval = 0;
         _repeatCount = repeatCount;
         
-        this->setScale(_fromValueForRadius);
-        this->setOpacity(_fromValueForAlpha * 255);
+        this->reset();
         
         return true;
     }
@@ -49,7 +51,8 @@ bool PulsingHaloEffect::initWithColor(const cocos2d::Color4B &color, float radiu
     return false;
 }
 
-void PulsingHaloEffect::start() {
+void PulsingHaloLayer::start() {
+    
     ScaleTo *scaleEffect = ScaleTo::create(_animationDuration, 1.0);
     
     FadeTo *fadeToEffect = FadeTo::create(_animationDuration * _keyTimeForHalfOpacity, 0.45);
@@ -57,11 +60,16 @@ void PulsingHaloEffect::start() {
     ActionInterval *fadeEffect = Sequence::createWithTwoActions(fadeToEffect, fadeOutEffect);
     
     CallFunc *reset = CallFunc::create([&] () {
-        this->setScale(_fromValueForRadius);
-        this->setOpacity(_fromValueForAlpha * 255);
+        this->reset();
     });
     
-    ActionInterval *mainAction = Sequence::create(Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL) ;
+    ActionInterval *mainAction = NULL;
+    if (_delayInterval <= 0 || _delayInterval == INFINITY) {
+        mainAction = Sequence::create(Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL);
+    } else {
+        // create a delay action
+        mainAction = Sequence::create(DelayTime::create(_delayInterval), Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL) ;
+    }
     
     Action *action = NULL;
     if (_repeatCount == 1) {
@@ -79,4 +87,9 @@ void PulsingHaloEffect::start() {
     action->setTag(kPulsingHaloLayerActionTag);
     
     this->runAction(action);
+}
+
+void PulsingHaloLayer::reset() {
+    this->setScale(_fromValueForRadius);
+    this->setOpacity(_fromValueForAlpha * 255);
 }

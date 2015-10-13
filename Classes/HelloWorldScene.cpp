@@ -4,6 +4,7 @@
 #include "PulsingHaloLayer.hpp"
 #include "CircleLayer.hpp"
 #include "PulsingHaloController.hpp"
+#include "MultiplePulsingHaloLayer.hpp"
 
 USING_NS_CC;
 
@@ -38,7 +39,7 @@ bool HelloWorld::init()
 
     addChild(rootNode);
     
-    PulsingHaloEffect* halo = PulsingHaloEffect::create();
+    PulsingHaloLayer* halo = PulsingHaloLayer::create();
     halo->setPosition(rootNode->getContentSize() * 0.5);
     addChild(halo);
     halo->start();
@@ -51,5 +52,11 @@ bool HelloWorld::init()
     circleLayer->addComponent(com);
     com->start();
 
+    MultiplePulsingHaloLayer *multiPulsing = MultiplePulsingHaloLayer::create();
+    multiPulsing->setPosition(rootNode->getContentSize() * 0.8);
+    addChild(multiPulsing);
+    multiPulsing->buildSubLayers();
+    multiPulsing->start();
+    
     return true;
 }

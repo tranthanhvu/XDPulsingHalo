@@ -25,6 +25,7 @@ public:
     virtual void update(float delta) override;
     
     static PulsingHaloController* create();
+    void reset();
     
 public:
     void start();
@@ -33,6 +34,7 @@ public:
     CC_SYNTHESIZE(float, _fromValueForAlpha, FromValueForAlpha);
     CC_SYNTHESIZE(float, _keyTimeForHalfOpacity, KeyTimeForHalfOpacity);
     CC_SYNTHESIZE(float, _animationDuration, AnimationDuration);
+    CC_SYNTHESIZE(float, _delayInterval, DelayInterval);
     CC_SYNTHESIZE(int, _repeatCount, RepeatCount);
 };
 

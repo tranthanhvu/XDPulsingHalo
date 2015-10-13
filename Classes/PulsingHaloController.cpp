@@ -37,19 +37,18 @@ bool PulsingHaloController::init() {
     _fromValueForAlpha = 0.45;
     _keyTimeForHalfOpacity = 0.7;
     _animationDuration = 3;
+    _delayInterval = 0;
     _repeatCount = 0;
     
     return true;
 }
 
 void PulsingHaloController::onAdd() {
-    _owner->setScale(_fromValueForRadius);
-    _owner->setOpacity(_fromValueForAlpha * 255);
+    this->reset();
 }
 
 void PulsingHaloController::onRemove() {
-    _owner->setScale(_fromValueForRadius);
-    _owner->setOpacity(_fromValueForAlpha * 255);
+    this->reset();
 }
 
 void PulsingHaloController::update(float delta) {
@@ -63,11 +62,16 @@ void PulsingHaloController::start() {
     ActionInterval *fadeEffect = Sequence::createWithTwoActions(fadeToEffect, fadeOutEffect);
     
     CallFunc *reset = CallFunc::create([&] () {
-        _owner->setScale(_fromValueForRadius);
-        _owner->setOpacity(_fromValueForAlpha * 255);
+        this->reset();
     });
     
-    ActionInterval *mainAction = Sequence::create(Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL) ;
+    ActionInterval *mainAction = NULL;
+    if (_delayInterval <= 0 || _delayInterval == INFINITY) {
+        mainAction = Sequence::create(Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL);
+    } else {
+        // create a delay action
+        mainAction = Sequence::create(DelayTime::create(_delayInterval), Spawn::createWithTwoActions(scaleEffect, fadeEffect), reset, NULL) ;
+    }
     
     Action *action = NULL;
     if (_repeatCount == 1) {
@@ -85,4 +89,9 @@ void PulsingHaloController::start() {
     action->setTag(kPulsingHaloLayerActionTag);
     
     _owner->runAction(action);
+}
+
+void PulsingHaloController::reset() {
+    _owner->setScale(_fromValueForRadius);
+    _owner->setOpacity(_fromValueForAlpha * 255);
 }

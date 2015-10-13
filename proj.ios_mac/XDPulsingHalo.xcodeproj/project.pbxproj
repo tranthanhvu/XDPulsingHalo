@@ -63,6 +63,7 @@
 		ED545A7E1B68A1FA00C3958E /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED545A7D1B68A1FA00C3958E /* libiconv.dylib */; };
 		F3183CEA1BCD01C800D683DC /* CircleLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3183CE81BCD01C800D683DC /* CircleLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 		F3183CED1BCD14C200D683DC /* PulsingHaloController.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3183CEB1BCD14C200D683DC /* PulsingHaloController.cpp */; settings = {ASSET_TAGS = (); }; };
+		F3183CF01BCD22A800D683DC /* MultiplePulsingHaloLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3183CEE1BCD22A800D683DC /* MultiplePulsingHaloLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 		F3819F9F1BCBC9760067CA09 /* PulsingHaloLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F3819F9D1BCBC9760067CA09 /* PulsingHaloLayer.cpp */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -128,6 +129,8 @@
 		F3183CE91BCD01C800D683DC /* CircleLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CircleLayer.hpp; sourceTree = "<group>"; };
 		F3183CEB1BCD14C200D683DC /* PulsingHaloController.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PulsingHaloController.cpp; sourceTree = "<group>"; };
 		F3183CEC1BCD14C200D683DC /* PulsingHaloController.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PulsingHaloController.hpp; sourceTree = "<group>"; };
+		F3183CEE1BCD22A800D683DC /* MultiplePulsingHaloLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MultiplePulsingHaloLayer.cpp; sourceTree = "<group>"; };
+		F3183CEF1BCD22A800D683DC /* MultiplePulsingHaloLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MultiplePulsingHaloLayer.hpp; sourceTree = "<group>"; };
 		F3819F9D1BCBC9760067CA09 /* PulsingHaloLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PulsingHaloLayer.cpp; sourceTree = "<group>"; };
 		F3819F9E1BCBC9760067CA09 /* PulsingHaloLayer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PulsingHaloLayer.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -258,6 +261,8 @@
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
 				F3819F9D1BCBC9760067CA09 /* PulsingHaloLayer.cpp */,
 				F3819F9E1BCBC9760067CA09 /* PulsingHaloLayer.hpp */,
+				F3183CEE1BCD22A800D683DC /* MultiplePulsingHaloLayer.cpp */,
+				F3183CEF1BCD22A800D683DC /* MultiplePulsingHaloLayer.hpp */,
 				F3183CE81BCD01C800D683DC /* CircleLayer.cpp */,
 				F3183CE91BCD01C800D683DC /* CircleLayer.hpp */,
 				F3183CEB1BCD14C200D683DC /* PulsingHaloController.cpp */,
@@ -446,6 +451,7 @@
 				503AE10017EB989F00D1A890 /* AppController.mm in Sources */,
 				503AE10217EB989F00D1A890 /* RootViewController.mm in Sources */,
 				503AE10117EB989F00D1A890 /* main.m in Sources */,
+				F3183CF01BCD22A800D683DC /* MultiplePulsingHaloLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
